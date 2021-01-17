@@ -1,12 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+
+import React, { useEffect } from "react";
+import { contactSelector, getContacts } from "./features/contact/ContactSlice";
+import { useDispatch, useSelector } from "react-redux";
+
+import AddDialog from "./UI/components/AddDialog/AddDialog";
+import CardDetails from "./UI/components/CardDetails/CardDetails";
+import add from "./assets/icons/add.svg";
 
 function App() {
+  const dispatch = useDispatch();
+  const { contacts, loading, errors } = useSelector(contactSelector);
+  console.log('contacts: ', contacts);
+
+  useEffect(() => {
+    dispatch(getContacts());
+
+  }, [dispatch]);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={add} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
@@ -18,6 +33,11 @@ function App() {
         >
           Learn React
         </a>
+        <AddDialog></AddDialog>
+        <CardDetails></CardDetails>
+        <CardDetails></CardDetails>
+        <CardDetails></CardDetails>
+        <CardDetails></CardDetails>
       </header>
     </div>
   );
