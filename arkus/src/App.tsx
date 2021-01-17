@@ -1,10 +1,10 @@
 import "./App.css";
 
+import { Card, Grid } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { contactSelector, getContacts } from "./features/contact/ContactSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-import AddDialog from "./UI/components/AddDialog/AddDialog";
 import CardDetails from "./UI/components/CardDetails/CardDetails";
 import add from "./assets/icons/add.svg";
 
@@ -33,11 +33,14 @@ function App() {
         >
           Learn React
         </a>
-        <AddDialog></AddDialog>
-        <CardDetails></CardDetails>
-        <CardDetails></CardDetails>
-        <CardDetails></CardDetails>
-        <CardDetails></CardDetails>
+        <Grid container spacing={10}>
+        {
+           contacts.map((item, i) =>(
+             <CardDetails></CardDetails>
+           )) 
+        }
+      </Grid>
+        
       </header>
     </div>
   );
