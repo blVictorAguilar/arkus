@@ -3,17 +3,16 @@ import "./DialogWidget.scss";
 import React, { ChangeEvent, FormEvent, useState } from "react";
 
 import Button from "@material-ui/core/Button";
-import { ContactItem } from "../../../features/types/types";
 import { Dialog } from "@material-ui/core";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
+import { DialogProps } from "./DialogWidget.model";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { InputWidget } from "../../atomic-elements/InputWidget/InputWidget";
 import { addContact } from "../../../features/contact/ContactSlice";
 import { useDispatch } from "react-redux";
 
-export default function FormDialog() {
-  const [open, setOpen] = useState(false);
+export default function FormDialog({ isOpen, handleOpen }: DialogProps) {
   const dispatch = useDispatch();
 
   const [inputData, setInputData] = useState<any>({
@@ -26,33 +25,20 @@ export default function FormDialog() {
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const data = inputData;
     data[event.target.id] = event.target.value;
-    setInputData(data)
+    setInputData(data);
   }
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    dispatch(
-      addContact(inputData)
-    );
+    dispatch(addContact(inputData));
   }
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        open
-      </Button>
       <Dialog
         className="dialog"
-        open={open}
-        onClose={handleClose}
+        open={isOpen}
+        onClose={handleOpen}
         aria-labelledby="form-dialog-title"
       >
         <form onSubmit={handleSubmit}>
@@ -84,7 +70,7 @@ export default function FormDialog() {
             ></InputWidget>
           </DialogContent>
           <DialogActions>
-            <Button color="primary" onClick={handleClose}>
+            <Button color="primary" onClick={handleOpen}>
               Cancel
             </Button>
             <Button type="submit" color="primary">

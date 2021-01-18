@@ -1,6 +1,6 @@
 
 export type InputWidgetProps = {
-  elementName?:string;
+  elementName?: string;
   type?: string;
   inputLabel: string;
   defaultValue: string;

@@ -44,12 +44,14 @@ export default function CardDetails(props: {contact: ContactItem}) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-    <IconButton>
-    <DeleteIcon onClick={handleDelete}></DeleteIcon>
-    </IconButton>
-    <IconButton>
-    <EditIcon onClick={handleDelete}></EditIcon>
-    </IconButton>
+    <div>
+      <IconButton>
+      <DeleteIcon onClick={handleDelete}></DeleteIcon>
+      </IconButton>
+        <IconButton>
+      <EditIcon onClick={handleDelete}></EditIcon>
+      </IconButton>
+      </div>
       </CardActions>
     </Card>
   );
