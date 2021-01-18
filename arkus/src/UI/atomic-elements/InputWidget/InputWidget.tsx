@@ -1,19 +1,29 @@
-import React, { ReactElement } from 'react'
+import React, { ChangeEvent, ReactElement, useState } from "react";
 
-import { InputWidgetProps } from './InputWidget.model';
-import { TextField } from '@material-ui/core';
+import { InputWidgetProps } from "./InputWidget.model";
+import { TextField } from "@material-ui/core";
 
 export function InputWidget({
-  inputValue,
+  type,
+  onInputChange,
   inputLabel,
-  defaultValue
-}: InputWidgetProps): ReactElement { 
+  defaultValue,
+}: InputWidgetProps): ReactElement {
+  const [inputType] = useState(type);
+  const [inputValue, setInputValue] = useState("");
+
+  const onSetInputValue = (event: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+    if (onInputChange) onInputChange(inputValue);
+  };
+
   return (
     <TextField
-          required
-          id="filled-required"
-          label={inputLabel}
-          defaultValue={defaultValue}
-        />
+      placeholder={defaultValue}
+      required
+      type={inputType}
+      label={inputLabel}
+      onChange={onSetInputValue}
+    />
   );
 }
