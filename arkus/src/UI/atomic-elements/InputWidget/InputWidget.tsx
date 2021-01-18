@@ -4,6 +4,7 @@ import { InputWidgetProps } from "./InputWidget.model";
 import { TextField } from "@material-ui/core";
 
 export function InputWidget({
+  elementName,
   type,
   onInputChange,
   inputLabel,
@@ -14,11 +15,12 @@ export function InputWidget({
 
   const onSetInputValue = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
-    if (onInputChange) onInputChange(inputValue);
+    if (onInputChange) onInputChange(event);
   };
 
   return (
     <TextField
+    id={elementName}
       placeholder={defaultValue}
       required
       type={inputType}

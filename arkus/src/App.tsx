@@ -1,19 +1,13 @@
-import "./App.css";
-
-import AddDialog from "./UI/components/AddDialog/AddDialog";
+import DialogWidget from "./UI/components/DialogWidget/DialogWidget";
 import GridSection from "./UI/components/GridSection/GridSection";
 import React  from "react";
 
 function App() {
- 
-
- 
+  document.body.style.backgroundColor = '#282c34'
   return (
-    <div className="App">
-      <header className="App-header">
-        <GridSection></GridSection>
-        <AddDialog></AddDialog>
-      </header>
+    <div >
+      <GridSection></GridSection>
+      <DialogWidget></DialogWidget>
     </div>
   );
 }

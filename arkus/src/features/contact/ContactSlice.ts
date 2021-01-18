@@ -83,6 +83,7 @@ export const addContact = (data: ContactItem): AppThunk => {
       });
 
       dispatch(setContact({ id: parseInt(res.data.id), ...res.data.data }));
+      dispatch(setLoading(false));
     } catch (error) {
       dispatch(setErrors(error));
       dispatch(setLoading(false));
@@ -97,7 +98,8 @@ export const deleteContact = (id: number): AppThunk => {
       const baseURL: string = `https://reqres.in/api/users/${id}`;
       const res = await axios.delete(baseURL);
       if(res.status===204)
-      dispatch(deleteContactItem(id));
+      {dispatch(deleteContactItem(id));
+      dispatch(setLoading(false))}
       else return
     } catch (error) {
       dispatch(setErrors(error));
@@ -114,9 +116,9 @@ export const updateContact = (id:number, data: ContactItem): AppThunk => {
       const res = await axios.put(baseURL,{
         data
       });
-      console.log({id,...res.data.data});
       if(res.status===200)
-      dispatch(updateContactItem({id,...res.data.data}));
+      {dispatch(updateContactItem({id,...res.data.data}))
+      dispatch(setLoading(false));}
       else return
     } catch (error) {
       dispatch(setErrors(error));
