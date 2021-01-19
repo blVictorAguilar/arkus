@@ -38,8 +38,8 @@ const contactSlice = createSlice({
     },
 
     updateContactItem: (state, { payload }: PayloadAction<ContactItem>) => {
-     const index = state.contacts.findIndex(item=>item.id === payload.id)
-      state.contacts[index]= payload
+      const index = state.contacts.findIndex((item) => item.id === payload.id);
+      state.contacts[index] = payload;
     },
   },
 });
@@ -50,7 +50,7 @@ export const {
   setContactsList,
   setContact,
   deleteContactItem,
-  updateContactItem
+  updateContactItem,
 } = contactSlice.actions;
 export default contactSlice.reducer;
 
@@ -97,10 +97,10 @@ export const deleteContact = (id: number): AppThunk => {
     try {
       const baseURL: string = `https://reqres.in/api/users/${id}`;
       const res = await axios.delete(baseURL);
-      if(res.status===204)
-      {dispatch(deleteContactItem(id));
-      dispatch(setLoading(false))}
-      else return
+      if (res.status === 204) {
+        dispatch(deleteContactItem(id));
+        dispatch(setLoading(false));
+      } else return;
     } catch (error) {
       dispatch(setErrors(error));
       dispatch(setLoading(false));
@@ -108,18 +108,18 @@ export const deleteContact = (id: number): AppThunk => {
   };
 };
 
-export const updateContact = (id:number, data: ContactItem): AppThunk => {
+export const updateContact = (id: number, data: ContactItem): AppThunk => {
   return async (dispatch) => {
     dispatch(setLoading(true));
     try {
       const baseURL: string = `https://reqres.in/api/users/${id}`;
-      const res = await axios.put(baseURL,{
-        data
+      const res = await axios.put(baseURL, {
+        data,
       });
-      if(res.status===200)
-      {dispatch(updateContactItem({id,...res.data.data}))
-      dispatch(setLoading(false));}
-      else return
+      if (res.status === 200) {
+        dispatch(updateContactItem({ id, ...res.data.data }));
+        dispatch(setLoading(false));
+      } else return;
     } catch (error) {
       dispatch(setErrors(error));
       dispatch(setLoading(false));

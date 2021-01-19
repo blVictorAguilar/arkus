@@ -1,4 +1,3 @@
-
 export type InputWidgetProps = {
   elementName?: string;
   type?: string;

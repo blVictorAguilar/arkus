@@ -1,12 +1,12 @@
-@import '../../../lib/sizes.scss';
+@import "../../../lib/sizes.scss";
 
 .card {
-    width: $wh-M;
-    height: $wh-L;
-    margin: $pm-M $pm-L;
-    text-align: center;
+  width: $wh-M;
+  height: $wh-L;
+  margin: $pm-M $pm-L;
+  text-align: center;
 
-    .media {
-        height: $wh-XS;
-    }
+  .media {
+    height: $wh-XS;
+  }
 }

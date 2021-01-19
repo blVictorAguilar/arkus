@@ -19,7 +19,7 @@ export default function GridSection() {
   return (
     <>
       {loading && <LinearProgress color="primary" />}
-      <Grid container >
+      <Grid container>
         {contacts.map((item) => (
           <div key={item.id}>
             <CardDetails contact={item}></CardDetails>

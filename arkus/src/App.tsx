@@ -1,12 +1,10 @@
-import './App.scss'
-import './App.scss'
+import "./App.scss";
 
-import { IconButton, Typography } from "@material-ui/core";
-
-import AddIcon from "@material-ui/icons/Add";
+import AddButton from "./UI/atomic-elements/AddButton/AddButton";
 import DialogWidget from "./UI/components/DialogWidget/DialogWidget";
 import GridSection from "./UI/components/GridSection/GridSection";
 import React from "react";
+import { Typography } from "@material-ui/core";
 import useModal from "./lib/hooks/useModal";
 
 function App() {
@@ -15,12 +13,12 @@ function App() {
 
   return (
     <>
-      <Typography className="title" variant="h4">Arkus App</Typography>
+      <Typography className="title" variant="h4">
+        Arkus App
+      </Typography>
       <GridSection></GridSection>
       <DialogWidget isOpen={isVisible} handleOpen={toggle}></DialogWidget>
-      <IconButton onClick={toggle} className="button">
-        <AddIcon></AddIcon>
-      </IconButton>
+      <AddButton toggle={toggle}></AddButton>
     </>
   );
 }
